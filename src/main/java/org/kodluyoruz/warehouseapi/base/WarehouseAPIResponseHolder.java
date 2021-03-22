@@ -9,11 +9,12 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class WarehouseAPIResponseHolder<T> {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    //@JsonInclude(JsonInclude.Include.NON_NULL) // null alanlar gözükmesin diye
     private T responseData;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
+
     private HttpStatus httpStatus;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
     private WarehouseAPIResponseError error;
 
     public WarehouseAPIResponseHolder(HttpStatus httpStatus) {

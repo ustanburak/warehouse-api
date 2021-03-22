@@ -1,16 +1,13 @@
 package org.kodluyoruz.warehouseapi.dao;
 
 
+import org.kodluyoruz.warehouseapi.base.WarehouseAPICRUDBaseRepository;
 import org.kodluyoruz.warehouseapi.model.entites.ProductEntity;
 
-import java.util.Collection;
 
-public interface ProductCRUDRepository {
-    Collection<ProductEntity> list();
 
-    ProductEntity create(ProductEntity productEntity);
+public interface ProductCRUDRepository extends WarehouseAPICRUDBaseRepository<ProductEntity> {
 
-    ProductEntity update(ProductEntity productEntity);
 
-    void delete(Long id);
 }
+

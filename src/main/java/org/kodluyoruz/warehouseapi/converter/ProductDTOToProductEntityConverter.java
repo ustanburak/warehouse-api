@@ -1,7 +1,5 @@
 package org.kodluyoruz.warehouseapi.converter;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.kodluyoruz.warehouseapi.base.WarehouseAPIConverter;
 import org.kodluyoruz.warehouseapi.model.dto.ProductDTO;
 import org.kodluyoruz.warehouseapi.model.entites.ProductEntity;
@@ -11,8 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Component
-public class ProductDTOtoProductEntityConverter implements WarehouseAPIConverter<ProductDTO, ProductEntity> {
-
+public class ProductDTOToProductEntityConverter implements WarehouseAPIConverter<ProductDTO, ProductEntity> {
     @Override
     public ProductEntity convert(ProductDTO input) {
         ProductEntity productEntity = new ProductEntity();

@@ -24,6 +24,4 @@ public class BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UPDATED_DATE")
     private Date updatedAt;
-
-
 }

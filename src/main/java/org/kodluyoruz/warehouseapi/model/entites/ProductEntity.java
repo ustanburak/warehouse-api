@@ -1,25 +1,35 @@
 package org.kodluyoruz.warehouseapi.model.entites;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.kodluyoruz.warehouseapi.model.enums.ProductStatus;
+import org.kodluyoruz.warehouseapi.model.enums.StatusEnum;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Set;
 
 
-@Entity
+@Entity(name = "product")
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "PRODUCT")
 public class ProductEntity extends BaseEntity {
 
+    @OneToMany(mappedBy = "productEntity",cascade = CascadeType.ALL)
+    Set<ProductWarehouseEntity> productWarehouseEntitySet;
+
     @Column(name = "CODE", unique = true, length = 50, nullable = false)
+    @NotNull(message = "{@NotNull.code})")
     private String code;
 
     @Column(name = "NAME", length = 100, nullable = false)
+    @NotNull(message = "{@NotNull.name})")
     private String name;
 
     @Column(name = "VAT_RATE", precision = 3, scale = 2, nullable = false)
@@ -36,9 +46,9 @@ public class ProductEntity extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STATUS", length = 7, nullable = false)
+    private StatusEnum status = StatusEnum.ACTIVE;
 
-    private ProductStatus status = ProductStatus.ACTIVE;
-
-
-
+    @JsonBackReference
+    @OneToMany(mappedBy = "productEntity")
+    private Collection<ProductWarehouseEntity> productWarehouseEntities;
 }

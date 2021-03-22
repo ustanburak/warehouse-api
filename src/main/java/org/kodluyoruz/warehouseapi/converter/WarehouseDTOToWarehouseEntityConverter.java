@@ -11,7 +11,6 @@ import java.util.Objects;
 @Component
 public class WarehouseDTOToWarehouseEntityConverter implements
         WarehouseAPIConverter<WarehouseDTO, WarehouseEntity> {
-
     @Override
     public WarehouseEntity convert(WarehouseDTO input) {
         WarehouseEntity warehouseEntity = new WarehouseEntity();
@@ -20,7 +19,6 @@ public class WarehouseDTOToWarehouseEntityConverter implements
         warehouseEntity.setCode(input.getCode());
         warehouseEntity.setStatus(input.getStatus());
         warehouseEntity.setCreatedAt(Objects.isNull(input.getCreatedAt()) ? new Date() : input.getCreatedAt());
-
         warehouseEntity.setUpdatedAt(input.getUpdatedAt());
         return warehouseEntity;
     }

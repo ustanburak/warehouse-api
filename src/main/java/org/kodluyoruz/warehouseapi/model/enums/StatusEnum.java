@@ -1,5 +1,5 @@
 package org.kodluyoruz.warehouseapi.model.enums;
 
-public enum WarehouseStatusEnum {
+public enum StatusEnum {
     ACTIVE,PASSIVE,DELETED
 }

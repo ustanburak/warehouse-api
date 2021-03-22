@@ -3,13 +3,14 @@ package org.kodluyoruz.warehouseapi.model.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.kodluyoruz.warehouseapi.model.enums.ProductStatus;
+import org.kodluyoruz.warehouseapi.model.enums.StatusEnum;
 
 import java.math.BigDecimal;
 
+
+
 @Getter
 @Setter
-
 public class ProductDTO extends BaseIDDTO {
 
     private String code;
@@ -18,5 +19,6 @@ public class ProductDTO extends BaseIDDTO {
     private BigDecimal vatAmount;
     private BigDecimal price;
     private BigDecimal vatIncludedPrice;
-    private ProductStatus status;
+    private StatusEnum status;
+
 }

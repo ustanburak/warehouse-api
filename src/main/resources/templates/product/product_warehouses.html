@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="master">
+<head>
+    <title>Products Warehouse</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <h1 class="text-center">Products Warehouse</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered table-hover small" id="products">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 25px;">ProductID</th>
+                        <th style="width: 25px;">ProductCode</th>
+                        <th style="width: 25px;">ProductName</th>
+                        <th style="width: 25px;">WarehouseID</th>
+                        <th style="width: 100px;">WarehouseCode</th>
+                        <th style="width: 200px;">WarehouseName</th>
+                        <th style="width: 25px;">VatRate</th>
+                        <th style="width: 50px;">VatAmount</th>
+                        <th style="width: 50px;">Price</th>
+                        <th style="width: 50px;">VatIncludedPrice</th>
+                        <th style="width: 50px;">ProductStatus</th>
+                        <th style="width: 50px;">StockAmount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="productWarehouse : ${listOfProductWarehouses}"
+                        th:attr="url=@{/products/warehouses/{id}(id=${productWarehouse.productId})}">
+                        <td th:text="${productWarehouse.productId}"></td>
+                        <td th:text="${productWarehouse.productCode}"></td>
+                        <td th:text="${productWarehouse.productName}"></td>
+                        <td th:text="${productWarehouse.warehouseId}"></td>
+                        <td th:text="${productWarehouse.warehouseCode}"></td>
+                        <td th:text="${productWarehouse.warehouseName}"></td>
+                        <td th:text="${productWarehouse.vatRate}"></td>
+                        <td th:text="${productWarehouse.vatAmount}"></td>
+                        <td th:text="${productWarehouse.price}"></td>
+                        <td th:text="${productWarehouse.vatIncludedPrice}"></td>
+                        <td th:text="${productWarehouse.statusEnum}"></td>
+                        <td th:text="${productWarehouse.stockAmount}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div layout:fragment="custom_js">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#products').DataTable({
+                order: [0, 'desc']
+            });
+
+            $(document).on('click', '.open-modal', function (event) {
+                var button = $(this);
+                $.get(button.data('remote'), function (response) {
+                    setContentModal(response);
+                    showmodal();
+                })
+            });
+
+            $(document).on('submit', '#create-form', function (e) {
+                e.preventDefault();
+
+                submitForm($(this), 'POST');
+
+                return false;
+            });
+
+            $(document).on('submit', '#update-form', function (e) {
+                e.preventDefault();
+                submitForm($(this), 'PUT');
+                return false;
+            });
+
+            $(document).on('click', '.del', function (e) {
+                var element = $(this);
+
+                var r = confirm("Bu veri silinecektir. Emin misiniz?");
+
+                if (r == true) {
+                    $.ajax({
+                        type: 'DELETE',
+                        contentType: "application/json",
+                        url: element.parents('tr').attr('url'),
+                        //data: JSON.stringify(getFormData(data)),
+                        dataType: 'json',
+                        cache: false,
+                        timeout: 600000,
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function (e) {
+                            alert(e.responseJSON.error.message)
+                        }
+                    });
+                }
+
+
+            });
+
+
+            function submitForm(form, method) {
+                var action = form.attr("action");
+                var data = form.serializeArray();
+
+                $.ajax({
+                    type: method,
+                    contentType: "application/json",
+                    url: action,
+                    data: JSON.stringify(getFormData(data)),
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+                        baseModal.modal('hide');
+                        location.reload();
+                    },
+                    error: function (e) {
+                        alert(e.responseJSON.error.message)
+                    }
+                });
+            }
+
+
+            function getFormData(data) {
+                var unindexed_array = data;
+                var indexed_array = {};
+
+                $.map(unindexed_array, function (n, i) {
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
+        });
+    </script>
+</div>
+</body>
+
+
+</html>

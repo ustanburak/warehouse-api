@@ -1,0 +1,100 @@
+<!DOCTYPE html >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Management System</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+        table{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+
+        thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<!-- create nav bar (header)-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Warehouse Management System</a>
+        </div>
+    </div>
+</nav>
+
+<br><br><br>
+
+<div class="container my-2">
+    <h1 align="center">Product List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th> ID</th>
+            <th> Code</th>
+            <th> Name</th>
+            <th> Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="warehouse : ${listOfWarehouses}">
+            <td th:text="${warehouse.id}"></td>
+            <td th:text="${warehouse.code}"></td>
+            <td th:text="${warehouse.name}"></td>
+            <td th:text="${warehouse.status}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
