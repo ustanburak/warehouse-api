@@ -1,6 +1,7 @@
 #Warehouse Management System
 
-Merhaba arkadaşlar, bitirme ödevi olarak Depo Yönetim Sistemi yapacağız.
+Uygulama Özellikleri
+Depo yönetim sistemi ile, bir şirketin ürünlerini sakladığı, listelediği, depolar arasında transfer yapabildiği, depolar ve ürünler üzerinde CRUD işlemlerini yapabildiği bir sistem yazıyor olacağız.
 
 Gereksinimler
 Spring Boot
@@ -9,8 +10,6 @@ Jpa
 Postgres/H2/MSSQL/MySql
 Lombok
 Ön yüz olarak React, Angular, Vue.Js, JSF, JSP veya farklı ön yüz teknolojisi kullanabilirsiniz.
-Uygulama Özellikleri
-Depo yönetim sistemi ile, bir şirketin ürünlerini sakladığı, listelediği, depolar arasında transfer yapabildiği, depolar ve ürünler üzerinde CRUD işlemlerini yapabildiği bir sistem yazıyor olacağız.
 
 Fonksiyonlar
 Kullanıcı sisteme email-şifre kombinasyonu ile girmeli.
