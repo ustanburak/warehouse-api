@@ -1,6 +1,7 @@
 #Warehouse Management System
 
 Uygulama Özellikleri
+
 Depo yönetim sistemi ile, bir şirketin ürünlerini sakladığı, listelediği, depolar arasında transfer yapabildiği, depolar ve ürünler üzerinde CRUD işlemlerini yapabildiği bir sistem yazıyor olacağız.
 
 Gereksinimler
@@ -9,7 +10,7 @@ Spring Web
 Jpa
 Postgres/H2/MSSQL/MySql
 Lombok
-Ön yüz olarak React, Angular, Vue.Js, JSF, JSP veya farklı ön yüz teknolojisi kullanabilirsiniz.
+Ön yüz olarak Thymeleaf kullanılmıştır.
 
 Fonksiyonlar
 Kullanıcı sisteme email-şifre kombinasyonu ile girmeli.
@@ -22,9 +23,11 @@ Listelenen ürüne tıklanıldığında açılacak bir pencerede ürüne ait bil
 Bir ürüne tıklanıldığında o ürünün hangi depolarda bulunduğunu, toplam adet sayısı gibi özet bilgileri gösterilecektir.
 Bir deponun özet bilgisi görülebilecektir. Özet bilgi içerisinde toplam ürün sayısı, toplam ürün fiyatı gibi bilgiler.
 Bunun dışında eklemek istediğiniz özellikler varsa ekleyebilirsiniz.
+
 Bu API ile sistemde kayıtlı Depo'lara yine sistemde kayıtlı bulunan ürünlerin stok miktarlarını tutacağız. Bir ürün aratıldığında o ürünün hangi depoda kaç adet ürün olduğunu görebildiğimiz gibi dilediğimizde ürün çıkartma / ekleme ve ürün stoğunu güncelleme gibi işlemleri yapacağız.
 
 Modeller
+
 Warehouse
 Product
 ProductWarehouse
@@ -158,17 +161,3 @@ Method Name = login
 HTTP Request Type = POST
 EndPoint = /warehouseapi/user/login
 Kondisyon = Kullanıcının email ve şifresinin kontrolü yapılmalı. Email için validasyon uygulanmalı. Email veya şifre uyumlu değilse kullanıcıya bilgi verilmeli.
-Dikkat edilmesi gereken hususlar
-Kullanacağımız veri tabanı dilediğiniz bir veritabanı olabilir.
-
-Kodlarımızı yazarken MVC ( Model / View / Controller ) yapısına dikkat edelim. Data Layer'da sadece Database işlemleri yaparken Business Layer'da gerekiyorsa validasyonlarımızı ve hesaplamalarımızı yapacağız. Servis katmanı asla data katmanındaki objeyi bilmeyecektir. Aynı anda data katmanı da servis katmanındaki objeyi bilmeyerek loose coupling'i gerçekleştireceğiz. Controller katmanında herhangi bir business olmamalı.
-
-Kodlarımızı yazarken ilgili yerlere log basmayı unutmayalım.
-
-Ek : Interceptor kullanarak gelen tüm isteklerinizi loglayabilirsiniz. ( Springboot Intercepter Http Requests for google searching :)) )
-
-Ek2: Customize exception sınıflarımızı türetelim.
-
-EK3 : Spring Controller Advice ile Exception handling yapabilirsiniz. Bu sayede business katmanında fırlatacağınız exceptionları handle ederek doğru custom responsları dönebilirsiniz. ( How to handle exceptions in Spring Boot via Controller Advice for google searching :)) )
-
-EK4: spring'in auto-ddl özelliğinden faydalanmayı unutmayın..
